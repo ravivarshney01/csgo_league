@@ -2,7 +2,7 @@
   <!-- <v-container>
     <Loader />
     <h1 class="fin" align="center">COMING SOON...</h1>
-  </v-container> -->
+  </v-container>-->
   <v-container>
     <Loader />
     <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
@@ -20,12 +20,23 @@
           </v-card-text>
           <v-card-actions>
             <p v-if="item.flag" class="title fin">{{ item.wonby }} won the match</p>
-            <!-- <div class="flex-grow-1"></div> -->
-            <!-- <v-btn v-if="item.flag" @click="dialogScore = true">See Scorecard</v-btn> -->
+            <div class="flex-grow-1"></div>
+            <v-btn v-if="item.flag" @click="showScore(item)">See Scorecard</v-btn>
           </v-card-actions>
         </v-card>
       </v-timeline-item>
     </v-timeline>
+    <v-dialog v-model="dialogScore">
+      <v-card>
+        <v-card-text>
+          <img width="100%" height="auto" :src="srURL" alt="Scorecard" />
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn text @click="dialogScore = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -52,8 +63,16 @@ export default {
   },
   data() {
     return {
-      fixtures: []
+      fixtures: [],
+      srURL: "",
+      dialogScore: false
     };
+  },
+  methods: {
+    showScore(data) {
+      this.dialogScore = true;
+      this.srURL = data.scURL;
+    }
   }
 };
 </script>
