@@ -1,7 +1,7 @@
 # CS:GO League
 
 ## A website for CS:GO league organised by Arcadia: The Gaming Club of IIITV
-
+# Holy Trinity
 ## Project setup
 ```
 npm install
